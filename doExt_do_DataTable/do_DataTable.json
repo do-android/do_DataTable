@@ -1,0 +1,256 @@
+{
+  "ID": "do_DataTable",
+  "IsContainer": "0",
+  "Type": "UI",
+  "UIType": "Container",
+  "Name": "表格视图",
+  "Version": "Internal",
+  "Description": "类似于Excel表格，展示对应的二维数据表，可以支持自定义的样式设置,可支持上下左右滑动查看，也可支持固定列的锁定",
+  "Icon": "",
+  "BBS": "",
+  "Keyword": "其它类型",
+  "IOS": {
+    "Support": 0,
+    "MinVersion": ""
+  },
+  "Android": {
+    "Support": 0,
+    "MinVersion": ""
+  },
+  "Windows": {
+    "Support": 0,
+    "MinVersion": ""
+  },
+  "WindowsPhone": {
+    "Support": 0,
+    "MinVersion": ""
+  },
+  "Html": {
+    "Support": 1,
+    "MinVersion": "5.0"
+  },
+  "Properties": [
+    {
+      "ID": "freezeColumn",
+      "Name": "冻结的列个数",
+      "Type": "Number",
+      "Type_JavaScript": "Number",
+      "DefaultValue": "1",
+      "EditType": "1",
+      "Group": "",
+      "Description": "只允许从左到右数起的列被冻结，左右滑动的时候固定不动",
+      "Design": {
+        "Type": "UInteger",
+        "Data": []
+      }
+    },
+    {
+      "ID": "isHeaderVisible",
+      "Name": "是否显示表头",
+      "Type": "Bool",
+      "Type_JavaScript": "Bool",
+      "DefaultValue": "true",
+      "EditType": "1",
+      "Group": "UI",
+      "Description": "如果显示表头的话，表头是不会随表格上滑动的时候滑动的",
+      "Design": {
+        "Type": "Boolean",
+        "Data": []
+      }
+    }
+  ],
+  "Events": [
+    {
+      "ID": "longTouch",
+      "Description": "长按cell触发",
+      "ReturnType": "Node",
+      "ReturnType_JavaScript": "Node",
+      "ReturnDesc": "当前单元格的位置（不含表头）{x:行的索引,y:列的索引}"
+    },
+    {
+      "ID": "touch",
+      "Description": "点击cell触发",
+      "ReturnType": "Node",
+      "ReturnType_JavaScript": "Node",
+      "ReturnDesc": "当前单元格的位置（不含表头）{x:行的索引,y:列的索引}"
+    }
+  ],
+  "syncMethodes": [
+    {
+      "ID": "setHeaderData",
+      "Name": "设置表头数据",
+      "Description": "",
+      "ReturnType": "",
+      "ReturnType_JavaScript": "",
+      "ReturnDesc": "",
+      "Paras": [
+        {
+          "ID": "data",
+          "Name": "数据",
+          "Type": "Node",
+          "Type_JavaScript": "Node",
+          "Required": 1,
+          "DefaultValue": "",
+          "Description": "格式如下：[“姓名”,“性别”,“年龄”...]"
+        }
+      ]
+    },
+    {
+      "ID": "setHeaderStyle",
+      "Name": "设置表头样式",
+      "Description": "",
+      "ReturnType": "",
+      "ReturnType_JavaScript": "",
+      "ReturnDesc": "",
+      "Paras": [
+        {
+          "ID": "width",
+          "Name": "行宽度",
+          "Type": "String",
+          "Type_JavaScript": "String",
+          "Required": 0,
+          "DefaultValue": "100",
+          "Description": "可以全局设置，如：100; 也可以支持对每列设置，格式为一个JsonArray，如：[100,50,40,50]，需与表头列数对应"
+        },
+        {
+          "ID": "height",
+          "Name": "行高度",
+          "Type": "String",
+          "Type_JavaScript": "String",
+          "Required": 0,
+          "DefaultValue": "80",
+          "Description": ""
+        },
+        {
+          "ID": "bgColor",
+          "Name": "背景颜色",
+          "Type": "String",
+          "Type_JavaScript": "String",
+          "Required": 0,
+          "DefaultValue": "00000000",
+          "Description": "设置背景显示颜色，值格式为：8位16进制字符，前6位是RGB颜色值，后两位是透明度（Alpha），例如：000000FF"
+        },
+        {
+          "ID": "fontColor",
+          "Name": "字体颜色",
+          "Type": "String",
+          "Type_JavaScript": "String",
+          "Required": 0,
+          "DefaultValue": "000000FF",
+          "Description": "设置字体显示颜色，值格式为：8位16进制字符，前6位是RGB颜色值，后两位是透明度（Alpha），例如：000000FF"
+        },
+        {
+          "ID": "fontStyle",
+          "Name": "字体风格",
+          "Type": "String",
+          "Type_JavaScript": "String",
+          "Required": 0,
+          "DefaultValue": "normal",
+          "Description": "包含4种类型：normal：常规bold：粗体italic：斜体bold_italic：粗斜体（iOS平台不支持）"
+        },
+        {
+          "ID": "textFlag",
+          "Name": "字体标示",
+          "Type": "String",
+          "Type_JavaScript": "String",
+          "Required": 0,
+          "DefaultValue": "normal",
+          "Description": "包含3种类型：normal：常规underline ：下划线strikethrough ：删除线"
+        },
+        {
+          "ID": "fontSize",
+          "Name": "字体大小",
+          "Type": "Number",
+          "Type_JavaScript": "Number",
+          "Required": 0,
+          "DefaultValue": "17",
+          "Description": ""
+        }
+      ]
+    },
+    {
+      "ID": "setRowData",
+      "Name": "设置表格数据",
+      "Description": "",
+      "ReturnType": "",
+      "ReturnType_JavaScript": "",
+      "ReturnDesc": "",
+      "Paras": [
+        {
+          "ID": "data",
+          "Name": "数据",
+          "Type": "String",
+          "Type_JavaScript": "String",
+          "Required": 1,
+          "DefaultValue": "",
+          "Description": "数据可以是data://目录文件，也可以是 一个JSON array二维表格式字符串，格式如下：[[r1c1,r1c2,r1c3...],[r2c1,r2c2,r2c3...]...]"
+        }
+      ]
+    },
+    {
+      "ID": "setRowStyle",
+      "Name": "设置数据样式",
+      "Description": "",
+      "ReturnType": "",
+      "ReturnType_JavaScript": "",
+      "ReturnDesc": "",
+      "Paras": [
+        {
+          "ID": "height",
+          "Name": "行高度",
+          "Type": "String",
+          "Type_JavaScript": "String",
+          "Required": 0,
+          "DefaultValue": "80",
+          "Description": ""
+        },
+        {
+          "ID": "bgColor",
+          "Name": "背景颜色",
+          "Type": "Node",
+          "Type_JavaScript": "Node",
+          "Required": 0,
+          "DefaultValue": "[“00000000”]",
+          "Description": "设置背景显示颜色，值格式为：8位16进制字符，前6位是RGB颜色值，后两位是透明度（Alpha），例如：000000FF，可以支持2个颜色，也可以支持一个颜色，2个颜色比如[“000000FF”,“FFFFFFFF”]表示奇数偶数行的背景色是可以不同的"
+        },
+        {
+          "ID": "fontColor",
+          "Name": "字体颜色",
+          "Type": "String",
+          "Type_JavaScript": "String",
+          "Required": 0,
+          "DefaultValue": "000000FF",
+          "Description": "设置字体显示颜色，值格式为：8位16进制字符，前6位是RGB颜色值，后两位是透明度（Alpha），例如：000000FF"
+        },
+        {
+          "ID": "fontStyle",
+          "Name": "字体风格",
+          "Type": "String",
+          "Type_JavaScript": "String",
+          "Required": 0,
+          "DefaultValue": "normal",
+          "Description": "包含4种类型：normal：常规bold：粗体italic：斜体bold_italic：粗斜体（iOS平台不支持）"
+        },
+        {
+          "ID": "textFlag",
+          "Name": "字体标示",
+          "Type": "String",
+          "Type_JavaScript": "String",
+          "Required": 0,
+          "DefaultValue": "normal",
+          "Description": "包含3种类型：normal：常规underline ：下划线strikethrough ：删除线"
+        },
+        {
+          "ID": "fontSize",
+          "Name": "字体大小",
+          "Type": "Number",
+          "Type_JavaScript": "Number",
+          "Required": 0,
+          "DefaultValue": "17",
+          "Description": ""
+        }
+      ]
+    }
+  ],
+  "asyncMethodes": []
+}
